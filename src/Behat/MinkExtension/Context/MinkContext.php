@@ -301,60 +301,66 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
     /**
      * Checks, that element with specified CSS contains specified text.
      *
-     * @Then /^(?:|I )should see "(?P<text>(?:[^"]|\\")*)" in the "(?P<element>[^"]*)" element$/
+     * @Then /^(?:|I )should see "(?P<text>(?:[^"]|\\")*)" in the "(?P<element>(?:[^"]|\\")*)" element$/
      */
     public function assertElementContainsText($element, $text)
     {
+        $element = $this->fixStepArgument($element);
         $this->assertSession()->elementTextContains('css', $element, $this->fixStepArgument($text));
     }
 
     /**
      * Checks, that element with specified CSS doesn't contain specified text.
      *
-     * @Then /^(?:|I )should not see "(?P<text>(?:[^"]|\\")*)" in the "(?P<element>[^"]*)" element$/
+     * @Then /^(?:|I )should not see "(?P<text>(?:[^"]|\\")*)" in the "(?P<element>(?:[^"]|\\")*)" element$/
      */
     public function assertElementNotContainsText($element, $text)
     {
+        $element = $this->fixStepArgument($element);
         $this->assertSession()->elementTextNotContains('css', $element, $this->fixStepArgument($text));
     }
 
     /**
      * Checks, that element with specified CSS contains specified HTML.
      *
-     * @Then /^the "(?P<element>[^"]*)" element should contain "(?P<value>(?:[^"]|\\")*)"$/
+     * @Then /^the "(?P<element>(?:[^"]|\\")*)" element should contain "(?P<value>(?:[^"]|\\")*)"$/
      */
     public function assertElementContains($element, $value)
     {
+        $element = $this->fixStepArgument($element);
         $this->assertSession()->elementContains('css', $element, $this->fixStepArgument($value));
     }
 
     /**
      * Checks, that element with specified CSS doesn't contain specified HTML.
      *
-     * @Then /^the "(?P<element>[^"]*)" element should not contain "(?P<value>(?:[^"]|\\")*)"$/
+     * @Then /^the "(?P<element>(?:[^"]|\\")*)" element should not contain "(?P<value>(?:[^"]|\\")*)"$/
      */
     public function assertElementNotContains($element, $value)
     {
+        $element = $this->fixStepArgument($element);
         $this->assertSession()->elementNotContains('css', $element, $this->fixStepArgument($value));
     }
 
     /**
      * Checks, that element with specified CSS exists on page.
      *
-     * @Then /^(?:|I )should see an? "(?P<element>[^"]*)" element$/
+     * @Then /^(?:|I )should see an? "(?P<element>(?:[^"]|\\")*)" element$/
      */
     public function assertElementOnPage($element)
     {
+        $element = $this->fixStepArgument($element);
         $this->assertSession()->elementExists('css', $element);
     }
 
     /**
      * Checks, that element with specified CSS doesn't exist on page.
      *
-     * @Then /^(?:|I )should not see an? "(?P<element>[^"]*)" element$/
+     * @Then /^(?:|I )should not see an? "(?P<element>(?:[^"]|\\")*)" element$/
      */
     public function assertElementNotOnPage($element)
     {
+        $element = $this->fixStepArgument($element);
         $this->assertSession()->elementNotExists('css', $element);
     }
 
@@ -408,10 +414,11 @@ class MinkContext extends RawMinkContext implements TranslatedContextInterface
     /**
      * Checks, that (?P<num>\d+) CSS elements exist on the page
      *
-     * @Then /^(?:|I )should see (?P<num>\d+) "(?P<element>[^"]*)" elements?$/
+     * @Then /^(?:|I )should see (?P<num>\d+) "(?P<element>(?:[^"]|\\")*)" elements?$/
      */
     public function assertNumElements($num, $element)
     {
+        $element = $this->fixStepArgument($element);
         $this->assertSession()->elementsCount('css', $element, intval($num));
     }
 
